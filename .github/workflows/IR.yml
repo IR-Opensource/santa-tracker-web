@@ -1,0 +1,38 @@
+name: JS
+
+on:
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  contents: write
+  packages: read
+  actions: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build Angular Project and Run PSE
+
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.11.0"
+
+      # Install global tools
+      # - name: Install global tools
+      #   run: |
+      #     npm install -g @angular/cli
+      #     npm install -g yarn
+      #     npm install -g gulp-cli
+
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
